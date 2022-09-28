@@ -18,7 +18,7 @@ class Simon {
         }
         //Sonidos:
         this.errorSound = new Audio('./sounds/error.wav')
-        history.buttonSounds = [
+        this.buttonSounds = [
             new Audio('./sounds/1.mp3'),
             new Audio('./sounds/2.mp3'),
             new Audio('./sounds/3.mp3'),
@@ -47,7 +47,8 @@ class Simon {
 
     //Actualizar la ronda y el tablero:
     updateRound(value) {
-        this.round = this.display.round.textContent = `Round ${this.round}`
+        this.round = value
+        this.display.round.textContent = `Round ${this.round}`
     }
 
     //Crear la matriz de botones aleatoriamente:
@@ -94,7 +95,7 @@ class Simon {
         }
     }
 
-    //Mostrar secuencia de botones que va a tener uqe seguir el jugador:
+    //Mostrar secuencia de botones que va a tener que seguir el jugador:
     showSequence() {
         this.blockedButtons = true;
         let sequenceIndex = 0;
