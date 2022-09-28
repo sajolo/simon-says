@@ -2,7 +2,7 @@ const round = document.getElementById('round') //Ronda en la que va a ir el usua
 const simonButtons = document.getElementsByClassName('sqare') //Los 4 botones de colores
 const startButton = document.getElementById('startButton') //Botón para iniciar el juego
 
-class Game {
+class Simon {
     constructor(simonButtons, startButton, round) {
         //Propiedades:
         this.round = 0 //En qué ronda del juego está el usuario, incializada en 0
@@ -17,19 +17,19 @@ class Game {
             round
         }
         //Sonidos:
-        this.errorSound = new Audio('./sounds/sounds_error.wav')
+        this.errorSound = new Audio('./sounds/error.wav')
         history.buttonSounds = [
-            new Audio('./sounds/sounds_1.mp3'),
-            new Audio('./sounds/sounds_2.mp3'),
-            new Audio('./sounds/sounds_3.mp3'),
-            new Audio('./sounds/sounds_4.mp3')
+            new Audio('./sounds/1.mp3'),
+            new Audio('./sounds/2.mp3'),
+            new Audio('./sounds/3.mp3'),
+            new Audio('./sounds/4.mp3')
         ]
     }
     //Métodos:
 
     //Iniciar el Simon:
     init() {
-        this.display.startButton.onclick= () => this.startGame()
+        this.display.startButton.onclick = () => this.startGame();
     }
 
     //Iniciar el juego:
@@ -96,19 +96,19 @@ class Game {
 
     //Mostrar secuencia de botones que va a tener uqe seguir el jugador:
     showSequence() {
-        this.blockedButtons = true
-        let sequenceIndex = 0
+        this.blockedButtons = true;
+        let sequenceIndex = 0;
         let timer = setInterval(() => {
-            const button = this.buttons[this.sequence[sequenceIndex]]
-            this.buttonSounds[this.sequence[sequenceIndex]].play()
+            const button = this.buttons[this.sequence[sequenceIndex]];
+            this.buttonSounds[this.sequence[sequenceIndex]].play();
             this.toggleButtonStyle(button)
             setTimeout( () => this.toggleButtonStyle(button), this.speed / 2)
-            sequenceIndex++
-            if(sequenceIndex > this.round) {
-                this.blockedButtons = false
-                clearInterval(timer)
+            sequenceIndex++;
+            if (sequenceIndex > this.round) {
+                this.blockedButtons = false;
+                clearInterval(timer);
             }
-        }, this.speed)
+        }, this.speed);
     }
 
     //Pintar botones para cuando se muestra la secuencia:
@@ -134,5 +134,5 @@ class Game {
     }
 }
 
-const simon = new Game(simonButtons, startButton, round)
+const simon = new Simon(simonButtons, startButton, round)
 simon.init()
